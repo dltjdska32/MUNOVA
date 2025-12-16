@@ -1,6 +1,5 @@
 # 🛒 MUNOVA - 이커머스 온라인 신발 쇼핑몰
 
-
 <div align="center">
 
 ![Spring Boot](https://img.shields.io/badge/Spring%20Boot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white)
@@ -8,6 +7,12 @@
 ![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white)
 ![Redis](https://img.shields.io/badge/Redis-DC382D?style=for-the-badge&logo=redis&logoColor=white)
 ![Elasticsearch](https://img.shields.io/badge/Elasticsearch-005571?style=for-the-badge&logo=elasticsearch&logoColor=white)
+
+### Domain-Driven Design 기반 고성능 이커머스 플랫폼
+
+[📽️ 시연 영상](https://www.youtube.com/watch?v=NCUD25v__2g)
+
+</div>
 
 ---
 
@@ -41,12 +46,14 @@
 
 #### 👤 사용자 기능 (Command Model)
 - **좋아요 관리**
-  - Redis Lua Script 기반 동시성 제어
-  - 낙관적 업데이트 패턴 적용
-  - Outbox 패턴으로 MySQL ↔ Redis 데이터 일관성 보장
+  - Redis Lua Script 기반 원자적 연산으로 동시성 제어
+  - MySQL 트랜잭션으로 좋아요 데이터 저장
+  - Redis에 실시간 통계 업데이트 (likeCount)
+  - Spring Batch로 주기적 동기화하여 데이터 일관성 보장
 - **장바구니 관리**
-  - 실시간 재고 검증
+  - 실시간 재고 검증 (ProductDetail 재고 확인)
   - 장바구니 아이템 추가/삭제/수정
+  - 품절 상품 자동 필터링
 
 #### 🛠️ 판매자 기능
 - **상품 등록**
@@ -476,6 +483,15 @@ Elasticsearch (검색/필터링) or MySQL (상세 조회)
 Redis에 캐싱 후 반환
 ```
 
+---
+
+## 🎬 시연 영상
+
+프로젝트의 실제 동작 모습을 확인하세요!
+
+[![MUNOVA 시연 영상](https://img.youtube.com/vi/NCUD25v__2g/maxresdefault.jpg)](https://www.youtube.com/watch?v=NCUD25v__2g)
+
+---
 
 ## 🔍 핵심 코드 리뷰
 
