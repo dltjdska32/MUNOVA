@@ -29,14 +29,6 @@ import java.util.stream.Collectors;
         , def = "{'categoryId': 1, 'optionIds': 1, 'viewCount': -1, '_id': -1}")
 @CompoundIndex(name = "idx_complex_category_option_salesCount_desc_id_desc"
         , def = "{'categoryId': 1, 'optionIds': 1, 'salesCount': -1, '_id': -1}")
-@CompoundIndex(name = "idx_option_created_desc_id_desc"
-        , def = "{'optionIds': 1, 'createdAt': -1, '_id': -1}")
-@CompoundIndex(name = "idx_option_likeCount_desc_id_desc"
-        , def = "{'optionIds': 1, 'likeCount': -1, '_id': -1}")
-@CompoundIndex(name = "idx_option_viewCount_desc_id_desc"
-        , def = "{'optionIds': 1, 'viewCount': -1, '_id': -1}")
-@CompoundIndex(name = "idx_option_salesCount_desc_id_desc"
-        , def = "{'optionIds': 1, 'salesCount': -1, '_id': -1}")
 @CompoundIndex(name = "idx_category_created_desc_id_desc"
         , def = "{'categoryId': 1, 'createdAt': -1, '_id': -1}")
 @CompoundIndex(name = "idx_category_likeCount_desc_id_desc"
