@@ -1,15 +1,5 @@
 # 🛒 MUNOVA - 이커머스 온라인 신발 쇼핑몰
 
----
-
-## 🎬 시연 영상
-
-프로젝트의 실제 동작 모습을 확인하세요!
-
-[![MUNOVA 시연 영상](https://img.youtube.com/vi/NCUD25v__2g/maxresdefault.jpg)](https://www.youtube.com/watch?v=NCUD25v__2g)
-
----
-
 
 <div align="center">
 
