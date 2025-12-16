@@ -1,19 +1,5 @@
 # 🛒 MUNOVA - 이커머스 온라인 신발 쇼핑몰
 
-<div align="center">
-
-![Spring Boot](https://img.shields.io/badge/Spring%20Boot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white)
-![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
-![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white)
-![Redis](https://img.shields.io/badge/Redis-DC382D?style=for-the-badge&logo=redis&logoColor=white)
-![Elasticsearch](https://img.shields.io/badge/Elasticsearch-005571?style=for-the-badge&logo=elasticsearch&logoColor=white)
-
-### Domain-Driven Design 기반 고성능 이커머스 플랫폼
-
-[📽️ 시연 영상](https://www.youtube.com/watch?v=NCUD25v__2g)
-
-</div>
-
 ---
 
 ## 📌 프로젝트 개요
