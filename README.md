@@ -8,11 +8,6 @@
 ![Redis](https://img.shields.io/badge/Redis-DC382D?style=for-the-badge&logo=redis&logoColor=white)
 ![Elasticsearch](https://img.shields.io/badge/Elasticsearch-005571?style=for-the-badge&logo=elasticsearch&logoColor=white)
 
-### Domain-Driven Design 기반 고성능 이커머스 플랫폼
-
-[📽️ 시연 영상](https://www.youtube.com/watch?v=NCUD25v__2g)
-
-</div>
 
 ---
 
@@ -26,9 +21,6 @@
 - **클린 아키텍처 도입**: Port & Adapter 패턴으로 비즈니스 로직과 인프라 계층 완전 분리
 - **데이터 일관성 보장**: Transactional Outbox 패턴으로 분산 시스템 간 데이터 동기화 안정성 확보
 - **동시성 제어**: Redis Lua Script 기반 원자적 연산으로 좋아요/조회수 동시성 문제 해결
-- **배치 최적화**: Spring Batch를 활용한 대용량 통계 데이터 동기화 (5,000건/chunk)
-
-
 
 ## 🏗️ 담당 도메인: 상품(Product)
 
