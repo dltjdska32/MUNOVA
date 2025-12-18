@@ -80,17 +80,23 @@ DAU 200,000명, 피크 유저 2,000명을 목표로 설정하고, **대용량 �
 <strong>📦 상품</strong><br>
 <hr>
 • 상품 전체 조회 (R)<br>
+&nbsp;&nbsp;&nbsp; - 키워드 기반 검색: 상품명,  브랜드명, 카테고리명, 옵션명을 통한 검색<br>
+&nbsp;&nbsp;&nbsp; - 필터 기능: 카테고리, 옵션 조건을 통한 검색 결과 필터링<br>
+&nbsp;&nbsp;&nbsp; - 정렬 기능: 최신순, 조회수순, 판매량순, 좋아요순 정렬<br>
 • 상품 상세 조회 (R)<br>
 • 판매자 등록 상품 조회 (R)<br>
 • 상품 조회수 업데이트 (U)<br>
+&nbsp;&nbsp;&nbsp; - 동시성 제어: Redis lua script를 통한 동시성 제어<br>
 • 상품 등록, 수정, 삭제 (C, U, D)
+
 </td>
 <td valign="top">
 <strong>❤️ 좋아요</strong><br>
 <hr>
 • 좋아요 리스트 조회 (R)<br>
 • 좋아요 등록, 삭제 (C, D)<br>
-• 상품 좋아요수 업데이트 (U)
+• 상품 좋아요수 업데이트 (U)<br>
+&nbsp;&nbsp;&nbsp; - 동시성 제어: Redis lua script를 통한 동시성 제어<br>
 </td>
 <td valign="top">
 <strong>🛒 장바구니</strong><br>
