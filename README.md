@@ -33,7 +33,7 @@ DAU 200,000명, 피크 유저 2,000명을 목표로 설정하고, **대용량 �
 ### 🌏 서버 아키텍처
 
 <div align="center">
-<img src="https://github.com/dltjdska32/my-resume-img/blob/main/munova_imgs/architecture/%EC%84%9C%EB%B2%84.png?raw=true" alt="서버 아키텍처" width="600">
+<img src="https://github.com/dltjdska32/my-resume-img/blob/main/munova_imgs/architecture/%EC%84%9C%EB%B2%84.png?raw=true" alt="서버 아키텍처" width="700">
 </div>
 
 ---
@@ -44,7 +44,7 @@ DAU 200,000명, 피크 유저 2,000명을 목표로 설정하고, **대용량 �
 
 <div align="center">
 
-<img src="https://github.com/dltjdska32/my-resume-img/blob/main/munova_imgs/architecture/%ED%85%8C%EC%8A%A4%ED%8A%B8%ED%99%98%EA%B2%BD.png?raw=true" alt="테스트 환경" width="600">
+<img src="https://github.com/dltjdska32/my-resume-img/blob/main/munova_imgs/architecture/%ED%85%8C%EC%8A%A4%ED%8A%B8%ED%99%98%EA%B2%BD.png?raw=true" alt="테스트 환경" width="700">
 
 </div>
 
@@ -59,7 +59,7 @@ DAU 200,000명, 피크 유저 2,000명을 목표로 설정하고, **대용량 �
 
 <div align="center">
 
-<img src="https://github.com/dltjdska32/my-resume-img/blob/main/munova_imgs/architecture/%EC%95%A0%EC%9E%90%EC%9D%BC.png?raw=true" alt="애자일 개발 프로세스" width="600">
+<img src="https://github.com/dltjdska32/my-resume-img/blob/main/munova_imgs/architecture/%EC%95%A0%EC%9E%90%EC%9D%BC.png?raw=true" alt="애자일 개발 프로세스" width="700">
 
 </div>
 
