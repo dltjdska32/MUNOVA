@@ -60,9 +60,9 @@ DAU 200,000명, 피크 유저 2,000명을 목표로 설정하고, **대용량 �
 
 ### 핵심 기능 구현
 
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; margin: 24px 0;">
-
-<div style="border-left: 4px solid #2563eb; padding: 20px; background: linear-gradient(135deg, #eff6ff 0%, #ffffff 100%); border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+<table>
+<tr>
+<td width="33%" style="border-left: 4px solid #2563eb; padding: 20px; background-color: #f0f9ff; border-radius: 8px; vertical-align: top;">
 <strong style="color: #2563eb; font-size: 18px;">🔍 상품 조회</strong><br>
 <small style="color: #64748b;">CQRS Read Model</small>
 <hr style="margin: 12px 0; border: none; border-top: 1px solid #e2e8f0;">
@@ -74,9 +74,8 @@ DAU 200,000명, 피크 유저 2,000명을 목표로 설정하고, **대용량 �
 <strong style="color: #1e293b;">상품 상세 조회</strong><br>
 <small style="color: #475569;">• Redis 캐싱 (재고/좋아요/조회수)<br>• MongoDB 이미지 조회<br>• Elasticsearch 연관 상품 추천</small>
 </div>
-</div>
-
-<div style="border-left: 4px solid #10b981; padding: 20px; background: linear-gradient(135deg, #ecfdf5 0%, #ffffff 100%); border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+</td>
+<td width="33%" style="border-left: 4px solid #10b981; padding: 20px; background-color: #f0fdf4; border-radius: 8px; vertical-align: top;">
 <strong style="color: #10b981; font-size: 18px;">👤 사용자 기능</strong><br>
 <small style="color: #64748b;">Command Model</small>
 <hr style="margin: 12px 0; border: none; border-top: 1px solid #e2e8f0;">
@@ -88,9 +87,8 @@ DAU 200,000명, 피크 유저 2,000명을 목표로 설정하고, **대용량 �
 <strong style="color: #1e293b;">장바구니 관리</strong><br>
 <small style="color: #475569;">• 실시간 재고 검증<br>• 아이템 추가/삭제/수정<br>• 품절 상품 자동 필터링</small>
 </div>
-</div>
-
-<div style="border-left: 4px solid #f59e0b; padding: 20px; background: linear-gradient(135deg, #fffbeb 0%, #ffffff 100%); border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+</td>
+<td width="33%" style="border-left: 4px solid #f59e0b; padding: 20px; background-color: #fffbeb; border-radius: 8px; vertical-align: top;">
 <strong style="color: #f59e0b; font-size: 18px;">🛠️ 판매자 기능</strong><br>
 <small style="color: #64748b;">Product Management</small>
 <hr style="margin: 12px 0; border: none; border-top: 1px solid #e2e8f0;">
@@ -102,9 +100,9 @@ DAU 200,000명, 피크 유저 2,000명을 목표로 설정하고, **대용량 �
 <strong style="color: #1e293b;">상품 수정/삭제</strong><br>
 <small style="color: #475569;">• Outbox 패턴 분산 DB 동기화<br>• Soft Delete 데이터 보존<br>• 이벤트 기반 연관 데이터 정리</small>
 </div>
-</div>
-
-</div>
+</td>
+</tr>
+</table>
 
 ---
 
