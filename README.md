@@ -60,9 +60,9 @@ DAU 200,000명, 피크 유저 2,000명을 목표로 설정하고, **대용량 �
 
 ### 핵심 기능 구현
 
-<table>
+<table width="100%" cellpadding="0" cellspacing="0" border="0">
 <tr>
-<td width="33%" style="border-left: 4px solid #2563eb; padding: 20px; background-color: #f0f9ff; border-radius: 8px; vertical-align: top;">
+<td width="33%" valign="top" style="border-left: 4px solid #2563eb; padding: 20px; background-color: #f0f9ff; border-radius: 8px;">
 <strong style="color: #2563eb; font-size: 18px;">🔍 상품 조회</strong><br>
 <small style="color: #64748b;">CQRS Read Model</small>
 <hr style="margin: 12px 0; border: none; border-top: 1px solid #e2e8f0;">
@@ -75,7 +75,7 @@ DAU 200,000명, 피크 유저 2,000명을 목표로 설정하고, **대용량 �
 <small style="color: #475569;">• Redis 캐싱 (재고/좋아요/조회수)<br>• MongoDB 이미지 조회<br>• Elasticsearch 연관 상품 추천</small>
 </div>
 </td>
-<td width="33%" style="border-left: 4px solid #10b981; padding: 20px; background-color: #f0fdf4; border-radius: 8px; vertical-align: top;">
+<td width="33%" valign="top" style="border-left: 4px solid #10b981; padding: 20px; background-color: #f0fdf4; border-radius: 8px;">
 <strong style="color: #10b981; font-size: 18px;">👤 사용자 기능</strong><br>
 <small style="color: #64748b;">Command Model</small>
 <hr style="margin: 12px 0; border: none; border-top: 1px solid #e2e8f0;">
@@ -88,7 +88,7 @@ DAU 200,000명, 피크 유저 2,000명을 목표로 설정하고, **대용량 �
 <small style="color: #475569;">• 실시간 재고 검증<br>• 아이템 추가/삭제/수정<br>• 품절 상품 자동 필터링</small>
 </div>
 </td>
-<td width="33%" style="border-left: 4px solid #f59e0b; padding: 20px; background-color: #fffbeb; border-radius: 8px; vertical-align: top;">
+<td width="33%" valign="top" style="border-left: 4px solid #f59e0b; padding: 20px; background-color: #fffbeb; border-radius: 8px;">
 <strong style="color: #f59e0b; font-size: 18px;">🛠️ 판매자 기능</strong><br>
 <small style="color: #64748b;">Product Management</small>
 <hr style="margin: 12px 0; border: none; border-top: 1px solid #e2e8f0;">
