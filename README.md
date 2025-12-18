@@ -30,6 +30,29 @@ DAU 200,000명, 피크 유저 2,000명을 목표로 설정하고, **대용량 �
 <BR>
 
 
+### 🌏 서버 아키텍처
+
+<div align="center">
+<img src="https://github.com/dltjdska32/my-resume-img/blob/main/munova_imgs/architecture/%EC%84%9C%EB%B2%84.png?raw=true" alt="서버 아키텍처" width="600">
+</div>
+
+---
+<BR>
+
+
+### 💻 테스트 환경
+
+<div align="center">
+
+<img src="https://github.com/dltjdska32/my-resume-img/blob/main/munova_imgs/architecture/%ED%85%8C%EC%8A%A4%ED%8A%B8%ED%99%98%EA%B2%BD.png?raw=true" alt="테스트 환경" width="600">
+
+</div>
+
+---
+<BR>
+
+
+
 ### 🔄 개발 프로세스
 
 **애자일(Agile) 방법론 적용**
@@ -47,37 +70,31 @@ DAU 200,000명, 피크 유저 2,000명을 목표로 설정하고, **대용량 �
 
 
 
-### 🌏 서버 아키텍처
-
-<div align="center">
-<img src="https://github.com/dltjdska32/my-resume-img/blob/main/munova_imgs/architecture/%EC%84%9C%EB%B2%84.png?raw=true" alt="서버 아키텍처" width="600">
-</div>
-
----
-<BR>
-
 ## 🏗️ 담당 도메인: 상품(Product)
 
 ### 1. 핵심 기능 구현
 
 <table>
 <tr>
-<td>
+<td valign="top">
 <strong>📦 상품</strong><br>
+<hr>
 • 상품 전체 조회 (R)<br>
 • 상품 상세 조회 (R)<br>
 • 판매자 등록 상품 조회 (R)<br>
 • 상품 조회수 업데이트 (U)<br>
 • 상품 등록, 수정, 삭제 (C, U, D)
 </td>
-<td>
+<td valign="top">
 <strong>❤️ 좋아요</strong><br>
+<hr>
 • 좋아요 리스트 조회 (R)<br>
 • 좋아요 등록, 삭제 (C, D)<br>
 • 상품 좋아요수 업데이트 (U)
 </td>
-<td>
+<td valign="top">
 <strong>🛒 장바구니</strong><br>
+<hr>
 • 장바구니 리스트 조회 (R)<br>
 • 장바구니 등록, 수정, <br> &nbsp;  삭제 (C, U, D)
 </td>
@@ -88,26 +105,30 @@ DAU 200,000명, 피크 유저 2,000명을 목표로 설정하고, **대용량 �
 
 <table>
 <tr>
-<td>
+<td valign="top">
 <strong>🏛️ DDD 아키텍처</strong><br>
+<hr>
 • 비즈니스 본질에 집중하는 설계<br>
 • 에그리게이트 패턴 <br> &nbsp; &nbsp;(상품, 장바구니, 좋아요)
 </td>
-<td>
+<td valign="top">
 <strong>🔌 Hexagonal 아키텍처</strong><br>
+<hr>
 • Port & Adapter 패턴<br>
 • 외부 기술적 요소에 의존적이지 않은 핵심 로직 구현
 </td>
 </tr>
 <tr>
-<td>
+<td valign="top">
 <strong>📖 CQRS 패턴</strong><br>
+<hr>
 • 읽기와 쓰기 분리<br>
 • 읽기 성능 향상<br>
 • 복잡한 조회 로직 단순화
 </td>
-<td>
+<td valign="top">
 <strong>📦 Outbox 패턴</strong><br>
+<hr>
 • 분산 트랜잭션 데이터 정합성 보장<br>
 • 재시도 로직 보장<br>
 • 이벤트 기반 비동기 처리
@@ -115,6 +136,20 @@ DAU 200,000명, 피크 유저 2,000명을 목표로 설정하고, **대용량 �
 </tr>
 </table>
 
+### 3. 사용 기술 스택
+
+
+<div align="center">
+
+<img src="https://github.com/dltjdska32/my-resume-img/blob/main/munova_imgs/architecture/%EC%83%81%ED%92%88%EB%8F%84%EB%A9%94%EC%9D%B8%20%EA%B8%B0%EC%88%A0%EC%8A%A4%ED%83%9D.png?raw=true" alt="상품도메인 기술스택" width="600">
+
+</div>
+
+<div style="margin-top: 20px; padding-left: 24px; font-family: 'Segoe UI', 'Malgun Gothic', sans-serif; font-size: 16px; font-weight: 700; line-height: 1.6; color: #2d3748;">
+
+**→** 각각의 기술들에 적절한 역할을 설정하여 하나의 기술에 집중될 수 있는 부하를 분산시키려고 노력했습니다.
+
+</div>
 
 ---
 
@@ -169,14 +204,3 @@ DAU 200,000명, 피크 유저 2,000명을 목표로 설정하고, **대용량 �
 - Redis 기반 고성능 동시성 제어 (Lua Script)
 - DDD/CQRS 패턴 실전 적용
 
-
-### 💻 테스트 환경
-
-<div align="center">
-
-<img src="https://github.com/dltjdska32/my-resume-img/blob/main/munova_imgs/architecture/%ED%85%8C%EC%8A%A4%ED%8A%B8%ED%99%98%EA%B2%BD.png?raw=true" alt="테스트 환경" width="600">
-
-</div>
-
----
-<BR>
