@@ -60,95 +60,57 @@ DAU 200,000명, 피크 유저 2,000명을 목표로 설정하고, **대용량 �
 
 ### 1. 핵심 기능 구현
 
-<table width="100%" cellpadding="12" cellspacing="0" border="0" style="width: 100%; max-width: 100%;">
+<table>
 <tr>
-<td width="2%"></td>
-<td width="32%" valign="top" style="background-color: #f0f9ff; border: 3px solid #2563eb; padding: 32px; min-width: 250px;">
-<strong style="color: #2563eb; font-size: 18px;">📦 상품</strong>
-<hr style="margin: 12px 0; border: none; border-top: 1px solid #e2e8f0;">
-<div style="margin-top: 12px;">
-<small style="color: #475569;">
+<td>
+<strong>📦 상품</strong><br>
 • 상품 전체 조회 (R)<br>
 • 상품 상세 조회 (R)<br>
 • 판매자 등록 상품 조회 (R)<br>
 • 상품 조회수 업데이트 (U)<br>
 • 상품 등록, 수정, 삭제 (C, U, D)
-</small>
-</div>
 </td>
-<td width="32%" valign="top" style="background-color: #f0fdf4; border: 3px solid #10b981; padding: 32px; min-width: 250px;">
-<strong style="color: #10b981; font-size: 18px;">❤️ 좋아요</strong>
-<hr style="margin: 12px 0; border: none; border-top: 1px solid #e2e8f0;">
-<div style="margin-top: 12px;">
-<small style="color: #475569;">
+<td>
+<strong>❤️ 좋아요</strong><br>
 • 좋아요 리스트 조회 (R)<br>
 • 좋아요 등록, 삭제 (C, D)<br>
 • 상품 좋아요수 업데이트 (U)
-</small>
-</div>
 </td>
-<td width="33%" valign="top" style="background-color: #fffbeb; border: 3px solid #f59e0b; padding: 32px; min-width: 250px;">
-<strong style="color: #f59e0b; font-size: 18px;">🛒 장바구니</strong>
-<hr style="margin: 12px 0; border: none; border-top: 1px solid #e2e8f0;">
-<div style="margin-top: 12px;">
-<small style="color: #475569;">
+<td>
+<strong>🛒 장바구니</strong><br>
 • 장바구니 리스트 조회 (R)<br>
-• 장바구니 등록, 수정, 삭제 (C, U, D)
-</small>
-</div>
+• 장바구니 등록, 수정, <br> &nbsp;  삭제 (C, U, D)
 </td>
 </tr>
 </table>
 
 ### 2. 적용 아키텍처 및 패턴
 
-<table width="100%" cellpadding="12" cellspacing="20" border="0" style="width: 100%; max-width: 100%;">
+<table>
 <tr>
-<td width="2%"></td>
-<td width="48%" valign="top" style="background-color: #faf5ff; border: 3px solid #8b5cf6; padding: 32px; min-width: 300px;">
-<strong style="color: #8b5cf6; font-size: 18px;">🏛️ DDD 아키텍처</strong>
-<hr style="margin: 12px 0; border: none; border-top: 1px solid #e2e8f0;">
-<div style="margin-top: 12px;">
-<small style="color: #475569;">
+<td>
+<strong>🏛️ DDD 아키텍처</strong><br>
 • 비즈니스 본질에 집중하는 설계<br>
-• 에그리게이트 패턴 (상품, 장바구니, 좋아요)
-</small>
-</div>
+• 에그리게이트 패턴 <br> &nbsp; &nbsp;(상품, 장바구니, 좋아요)
 </td>
-<td width="48%" valign="top" style="background-color: #fdf2f8; border: 3px solid #ec4899; padding: 32px; min-width: 300px;">
-<strong style="color: #ec4899; font-size: 18px;">🔌 Hexagonal 아키텍처</strong>
-<hr style="margin: 12px 0; border: none; border-top: 1px solid #e2e8f0;">
-<div style="margin-top: 12px;">
-<small style="color: #475569;">
+<td>
+<strong>🔌 Hexagonal 아키텍처</strong><br>
 • Port & Adapter 패턴<br>
-• 외부 기술적 요소에 의존적이지 않은 <br> 핵심 로직 구현
-</small>
-</div>
+• 외부 기술적 요소에 의존적이지 않은 핵심 로직 구현
 </td>
 </tr>
 <tr>
-<td width="2%"></td>
-<td width="48%" valign="top" style="background-color: #ecfeff; border: 3px solid #06b6d4; padding: 32px; min-width: 300px;">
-<strong style="color: #06b6d4; font-size: 18px;">📖 CQRS 패턴</strong>
-<hr style="margin: 12px 0; border: none; border-top: 1px solid #e2e8f0;">
-<div style="margin-top: 12px;">
-<small style="color: #475569;">
+<td>
+<strong>📖 CQRS 패턴</strong><br>
 • 읽기와 쓰기 분리<br>
 • 읽기 성능 향상<br>
 • 복잡한 조회 로직 단순화
-</small>
-</div>
 </td>
-<td width="48%" valign="top" style="background-color: #fff7ed; border: 3px solid #f97316; padding: 32px; min-width: 300px;">
-<strong style="color: #f97316; font-size: 18px;">📦 Outbox 패턴</strong>
-<hr style="margin: 12px 0; border: none; border-top: 1px solid #e2e8f0;">
-<div style="margin-top: 12px;">
-<small style="color: #475569;">
+<td>
+<strong>📦 Outbox 패턴</strong><br>
 • 분산 트랜잭션 데이터 정합성 보장<br>
 • 재시도 로직 보장<br>
 • 이벤트 기반 비동기 처리
-</small>
-</div>
 </td>
 </tr>
 </table>
