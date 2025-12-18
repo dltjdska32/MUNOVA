@@ -60,11 +60,9 @@ DAU 200,000명, 피크 유저 2,000명을 목표로 설정하고, **대용량 �
 
 ### 1. 핵심 기능 구현
 
-<div style="margin-left: 20px;">
-
-<table width="100%" cellpadding="0" cellspacing="0" border="0">
+<table width="100%" cellpadding="0" cellspacing="0" border="0" style="padding-left: 20px;">
 <tr>
-<td width="33%" valign="top" style="border: 2px solid #2563eb; border-left: 4px solid #2563eb; padding: 20px; border-radius: 8px;">
+<td width="33%" valign="top" bgcolor="#f0f9ff" style="border: 3px solid #2563eb; padding: 24px;">
 <strong style="color: #2563eb; font-size: 18px;">📦 상품</strong>
 <hr style="margin: 12px 0; border: none; border-top: 1px solid #e2e8f0;">
 <div style="margin-top: 12px;">
@@ -77,7 +75,7 @@ DAU 200,000명, 피크 유저 2,000명을 목표로 설정하고, **대용량 �
 </small>
 </div>
 </td>
-<td width="33%" valign="top" style="border: 2px solid #10b981; border-left: 4px solid #10b981; padding: 20px; border-radius: 8px;">
+<td width="33%" valign="top" bgcolor="#f0fdf4" style="border: 3px solid #10b981; padding: 24px;">
 <strong style="color: #10b981; font-size: 18px;">❤️ 좋아요</strong>
 <hr style="margin: 12px 0; border: none; border-top: 1px solid #e2e8f0;">
 <div style="margin-top: 12px;">
@@ -88,7 +86,7 @@ DAU 200,000명, 피크 유저 2,000명을 목표로 설정하고, **대용량 �
 </small>
 </div>
 </td>
-<td width="33%" valign="top" style="border: 2px solid #f59e0b; border-left: 4px solid #f59e0b; padding: 20px; border-radius: 8px;">
+<td width="33%" valign="top" bgcolor="#fffbeb" style="border: 3px solid #f59e0b; padding: 24px;">
 <strong style="color: #f59e0b; font-size: 18px;">🛒 장바구니</strong>
 <hr style="margin: 12px 0; border: none; border-top: 1px solid #e2e8f0;">
 <div style="margin-top: 12px;">
@@ -101,15 +99,11 @@ DAU 200,000명, 피크 유저 2,000명을 목표로 설정하고, **대용량 �
 </tr>
 </table>
 
-</div>
-
 ### 2. 적용 아키텍처 및 패턴
 
-<div style="margin-left: 20px;">
-
-<table width="100%" cellpadding="0" cellspacing="16" border="0">
+<table width="100%" cellpadding="0" cellspacing="16" border="0" style="padding-left: 20px;">
 <tr>
-<td width="50%" valign="top" style="border: 2px solid #8b5cf6; border-left: 4px solid #8b5cf6; padding: 20px; border-radius: 8px;">
+<td width="50%" valign="top" bgcolor="#faf5ff" style="border: 3px solid #8b5cf6; padding: 24px;">
 <strong style="color: #8b5cf6; font-size: 18px;">🏛️ DDD 아키텍처</strong>
 <hr style="margin: 12px 0; border: none; border-top: 1px solid #e2e8f0;">
 <div style="margin-top: 12px;">
@@ -119,7 +113,7 @@ DAU 200,000명, 피크 유저 2,000명을 목표로 설정하고, **대용량 �
 </small>
 </div>
 </td>
-<td width="50%" valign="top" style="border: 2px solid #ec4899; border-left: 4px solid #ec4899; padding: 20px; border-radius: 8px;">
+<td width="50%" valign="top" bgcolor="#fdf2f8" style="border: 3px solid #ec4899; padding: 24px;">
 <strong style="color: #ec4899; font-size: 18px;">🔌 Hexagonal 아키텍처</strong>
 <hr style="margin: 12px 0; border: none; border-top: 1px solid #e2e8f0;">
 <div style="margin-top: 12px;">
@@ -131,7 +125,7 @@ DAU 200,000명, 피크 유저 2,000명을 목표로 설정하고, **대용량 �
 </td>
 </tr>
 <tr>
-<td width="50%" valign="top" style="border: 2px solid #06b6d4; border-left: 4px solid #06b6d4; padding: 20px; border-radius: 8px;">
+<td width="50%" valign="top" bgcolor="#ecfeff" style="border: 3px solid #06b6d4; padding: 24px;">
 <strong style="color: #06b6d4; font-size: 18px;">📖 CQRS 패턴</strong>
 <hr style="margin: 12px 0; border: none; border-top: 1px solid #e2e8f0;">
 <div style="margin-top: 12px;">
@@ -142,7 +136,7 @@ DAU 200,000명, 피크 유저 2,000명을 목표로 설정하고, **대용량 �
 </small>
 </div>
 </td>
-<td width="50%" valign="top" style="border: 2px solid #f97316; border-left: 4px solid #f97316; padding: 20px; border-radius: 8px;">
+<td width="50%" valign="top" bgcolor="#fff7ed" style="border: 3px solid #f97316; padding: 24px;">
 <strong style="color: #f97316; font-size: 18px;">📦 Outbox 패턴</strong>
 <hr style="margin: 12px 0; border: none; border-top: 1px solid #e2e8f0;">
 <div style="margin-top: 12px;">
@@ -155,8 +149,6 @@ DAU 200,000명, 피크 유저 2,000명을 목표로 설정하고, **대용량 �
 </td>
 </tr>
 </table>
-
-</div>
 
 
 ---
