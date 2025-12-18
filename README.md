@@ -58,51 +58,106 @@ DAU 200,000명, 피크 유저 2,000명을 목표로 설정하고, **대용량 �
 
 ## 🏗️ 담당 도메인: 상품(Product)
 
-### 핵심 기능 구현
+### 1. 핵심 기능 구현
+
+<div style="margin-left: 20px;">
 
 <table width="100%" cellpadding="0" cellspacing="0" border="0">
 <tr>
-<td width="33%" valign="top" style="border-left: 4px solid #2563eb; padding: 20px; background-color: #f0f9ff; border-radius: 8px;">
-<strong style="color: #2563eb; font-size: 18px;">🔍 상품 조회</strong><br>
-<small style="color: #64748b;">CQRS Read Model</small>
+<td width="33%" valign="top" style="border: 2px solid #2563eb; border-left: 4px solid #2563eb; padding: 20px; border-radius: 8px;">
+<strong style="color: #2563eb; font-size: 18px;">📦 상품</strong>
 <hr style="margin: 12px 0; border: none; border-top: 1px solid #e2e8f0;">
 <div style="margin-top: 12px;">
-<strong style="color: #1e293b;">전체 상품 조회</strong><br>
-<small style="color: #475569;">• 카테고리, 브랜드, 가격 범위 필터링<br>• 인기순/최신순/가격순 정렬<br>• Cursor 기반 페이지네이션</small>
-</div>
-<div style="margin-top: 16px;">
-<strong style="color: #1e293b;">상품 상세 조회</strong><br>
-<small style="color: #475569;">• Redis 캐싱 (재고/좋아요/조회수)<br>• MongoDB 이미지 조회<br>• Elasticsearch 연관 상품 추천</small>
+<small style="color: #475569;">
+• 상품 전체 조회 (R)<br>
+• 상품 상세 조회 (R)<br>
+• 판매자 등록 상품 조회 (R)<br>
+• 상품 조회수 업데이트 (U)<br>
+• 상품 등록, 수정, 삭제 (C, U, D)
+</small>
 </div>
 </td>
-<td width="33%" valign="top" style="border-left: 4px solid #10b981; padding: 20px; background-color: #f0fdf4; border-radius: 8px;">
-<strong style="color: #10b981; font-size: 18px;">👤 사용자 기능</strong><br>
-<small style="color: #64748b;">Command Model</small>
+<td width="33%" valign="top" style="border: 2px solid #10b981; border-left: 4px solid #10b981; padding: 20px; border-radius: 8px;">
+<strong style="color: #10b981; font-size: 18px;">❤️ 좋아요</strong>
 <hr style="margin: 12px 0; border: none; border-top: 1px solid #e2e8f0;">
 <div style="margin-top: 12px;">
-<strong style="color: #1e293b;">좋아요 관리</strong><br>
-<small style="color: #475569;">• Redis Lua Script 동시성 제어<br>• MySQL 트랜잭션 저장<br>• Spring Batch 주기적 동기화</small>
-</div>
-<div style="margin-top: 16px;">
-<strong style="color: #1e293b;">장바구니 관리</strong><br>
-<small style="color: #475569;">• 실시간 재고 검증<br>• 아이템 추가/삭제/수정<br>• 품절 상품 자동 필터링</small>
+<small style="color: #475569;">
+• 좋아요 리스트 조회 (R)<br>
+• 좋아요 등록, 삭제 (C, D)<br>
+• 상품 좋아요수 업데이트 (U)
+</small>
 </div>
 </td>
-<td width="33%" valign="top" style="border-left: 4px solid #f59e0b; padding: 20px; background-color: #fffbeb; border-radius: 8px;">
-<strong style="color: #f59e0b; font-size: 18px;">🛠️ 판매자 기능</strong><br>
-<small style="color: #64748b;">Product Management</small>
+<td width="33%" valign="top" style="border: 2px solid #f59e0b; border-left: 4px solid #f59e0b; padding: 20px; border-radius: 8px;">
+<strong style="color: #f59e0b; font-size: 18px;">🛒 장바구니</strong>
 <hr style="margin: 12px 0; border: none; border-top: 1px solid #e2e8f0;">
 <div style="margin-top: 12px;">
-<strong style="color: #1e293b;">상품 등록</strong><br>
-<small style="color: #475569;">• S3 다중 이미지 업로드<br>• 사이즈별 재고 설정<br>• MySQL → MongoDB → ES 동기화</small>
-</div>
-<div style="margin-top: 16px;">
-<strong style="color: #1e293b;">상품 수정/삭제</strong><br>
-<small style="color: #475569;">• Outbox 패턴 분산 DB 동기화<br>• Soft Delete 데이터 보존<br>• 이벤트 기반 연관 데이터 정리</small>
+<small style="color: #475569;">
+• 장바구니 리스트 조회 (R)<br>
+• 장바구니 등록, 수정, 삭제 (C, U, D)
+</small>
 </div>
 </td>
 </tr>
 </table>
+
+</div>
+
+### 2. 적용 아키텍처 및 패턴
+
+<div style="margin-left: 20px;">
+
+<table width="100%" cellpadding="0" cellspacing="16" border="0">
+<tr>
+<td width="50%" valign="top" style="border: 2px solid #8b5cf6; border-left: 4px solid #8b5cf6; padding: 20px; border-radius: 8px;">
+<strong style="color: #8b5cf6; font-size: 18px;">🏛️ DDD 아키텍처</strong>
+<hr style="margin: 12px 0; border: none; border-top: 1px solid #e2e8f0;">
+<div style="margin-top: 12px;">
+<small style="color: #475569;">
+• 비즈니스 본질에 집중하는 설계<br>
+• 에그리게이트 패턴 (상품, 장바구니, 좋아요)
+</small>
+</div>
+</td>
+<td width="50%" valign="top" style="border: 2px solid #ec4899; border-left: 4px solid #ec4899; padding: 20px; border-radius: 8px;">
+<strong style="color: #ec4899; font-size: 18px;">🔌 Hexagonal 아키텍처</strong>
+<hr style="margin: 12px 0; border: none; border-top: 1px solid #e2e8f0;">
+<div style="margin-top: 12px;">
+<small style="color: #475569;">
+• Port & Adapter 패턴<br>
+• 외부 기술적 요소에 의존적이지 않은 <br> 핵심 로직 구현
+</small>
+</div>
+</td>
+</tr>
+<tr>
+<td width="50%" valign="top" style="border: 2px solid #06b6d4; border-left: 4px solid #06b6d4; padding: 20px; border-radius: 8px;">
+<strong style="color: #06b6d4; font-size: 18px;">📖 CQRS 패턴</strong>
+<hr style="margin: 12px 0; border: none; border-top: 1px solid #e2e8f0;">
+<div style="margin-top: 12px;">
+<small style="color: #475569;">
+• 읽기와 쓰기 분리<br>
+• 읽기 성능 향상<br>
+• 복잡한 조회 로직 단순화
+</small>
+</div>
+</td>
+<td width="50%" valign="top" style="border: 2px solid #f97316; border-left: 4px solid #f97316; padding: 20px; border-radius: 8px;">
+<strong style="color: #f97316; font-size: 18px;">📦 Outbox 패턴</strong>
+<hr style="margin: 12px 0; border: none; border-top: 1px solid #e2e8f0;">
+<div style="margin-top: 12px;">
+<small style="color: #475569;">
+• 분산 트랜잭션 데이터 정합성 보장<br>
+• 재시도 로직 보장<br>
+• 이벤트 기반 비동기 처리
+</small>
+</div>
+</td>
+</tr>
+</table>
+
+</div>
+
 
 ---
 
