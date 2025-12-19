@@ -270,13 +270,13 @@
   </div>
 
 - 테스트 환경
- - MongoDB 약 2000만 문서
- - ES 약 2000만 문서
- - RDB 상품 관련 총 데이터 1억 3천만건
- - 테스트 시나리오 (로드 테스트)
-  <div align="center">
-    <img src="https://github.com/dltjdska32/my-resume-img/blob/main/munova_imgs/2%EC%B0%A8%20test-img/2%EC%B0%A8%20%ED%85%8C%EC%8A%A4%ED%8A%B8%20%EC%84%B8%ED%8C%85.png?raw=true" alt="2차 테스트 세팅" width="600" height="200">
-  </div>
+  - MongoDB 약 2000만 문서
+  - ES 약 2000만 문서
+  - RDB 상품 관련 총 데이터 1억 3천만건
+  - 테스트 시나리오 (로드 테스트)
+    <div align="center">
+      <img src="https://github.com/dltjdska32/my-resume-img/blob/main/munova_imgs/2%EC%B0%A8%20test-img/2%EC%B0%A8%20%ED%85%8C%EC%8A%A4%ED%8A%B8%20%EC%84%B8%ED%8C%85.png?raw=true" alt="2차 테스트 세팅" width="600" height="200">
+    </div>
 
 - 문제 상황
   - 상품 전체 조회 시 p(95) 5.4s로, 초기 목표였던 p(95) 3초 내외에 미치지 못함
