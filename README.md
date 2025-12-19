@@ -205,7 +205,7 @@
 
 
 
-## 🎨 기술적 도전 및 문제 해결
+## 🎨 기술적 도전 및 성능 개선
 
 - 최소한의 인프라(ES 노드 1대, MongoDB 1대, MySQL 1대, Redis 1대, 애플리케이션 서버 1대)로 실제 서비스 수준 트래픽을 처리하기 위해 성능 병목을 예측·검증하고 개선한 과정 정리
 
@@ -262,7 +262,7 @@
 <br>
 
 
-### 2. 상품 전체 조회 2차 성능 개선 - 부하 분산
+### 2. 상품 전체 조회 2차 성능 개선 - 스레드 튜닝 및 부하 분산
 
 - 상품 전체 조회 Sequence Diagram
   <div align="center">
@@ -273,13 +273,67 @@
  - MongoDB 약 2000만 문서
  - ES 약 2000만 문서
  - RDB 상품 관련 총 데이터 1억 3천만건
- - 테스트 시나리오
+ - 테스트 시나리오 (로드 테스트)
   <div align="center">
     <img src="https://github.com/dltjdska32/my-resume-img/blob/main/munova_imgs/2%EC%B0%A8%20test-img/2%EC%B0%A8%20%ED%85%8C%EC%8A%A4%ED%8A%B8%20%EC%84%B8%ED%8C%85.png?raw=true" alt="2차 테스트 세팅" width="600" height="200">
   </div>
- 
+
+- 문제 상황
+  - 상품 전체 조회 시 p(95) 5.4s로, 초기 목표였던 p(95) 3초 내외에 미치지 못함
+  - 애플리케이션 서버 스레드 풀·DB 커넥션 풀 설정이 실제 부하 패턴에 비해 비효율적으로 구성됨
+    - CPU Load Average가 400% 수준까지 치솟아, CPU 관점에서 시스템 전체 부하가 과도하게 높은 상태
+    - MongoDB 및 ES의 Read Lock 대기 시간이 길어지면서 QPS가 충분히 나오지 못하고, 일부 요청이 지연되어 응답 시간이 늦어지는 현상 발생
 
 
+- 해결 방법
+  - **스레드 풀 및 커넥션 풀 최적화**: CPU 부하를 낮추고 Read Lock 대기 시간을 감소시켜 QPS 향상
+    - WAS 스레드 풀: 40 → 18
+    - ES 커넥션 풀: 20 → 9
+    - MongoDB 커넥션 풀: 25 → 10
+  - **커넥션 타임아웃 조정**: 비정상적으로 응답 시간이 긴 조회 요청의 연결을 조기에 종료하여 커넥션 자원 효율성 향상
+    - ES 커넥션 타임아웃: 10s → 7s
+    - MongoDB 커넥션 타임아웃: 10s → 7s
+
+
+ - 결과
+  - 개선 전: RPS: 234 / p(95): 5.4s
+  
+  <div align="center">
+    <img src="https://raw.githubusercontent.com/dltjdska32/my-resume-img/main/munova_imgs/2%EC%B0%A8%20test-img/%EC%B4%88%EA%B8%B0%20%EA%B2%B0%EA%B3%BC.png?raw=true" alt="2차 테스트 초기 결과" width="600" height="200">
+  </div>
+
+  - 개선 후: RPS: 318 / p(95): 3.87s
+  
+  <div align="center">
+    <img src="https://raw.githubusercontent.com/dltjdska32/my-resume-img/main/munova_imgs/2%EC%B0%A8%20test-img/%EC%B5%9C%EC%A2%85%EA%B2%B0%EA%B3%BC.png?raw=true" alt="2차 테스트 최종 결과" width="600" height="200">
+  </div>
+
+  - 모니터링 결과
+
+    - ES
+    
+    <div align="center">
+      <img src="https://raw.githubusercontent.com/dltjdska32/my-resume-img/main/munova_imgs/2%EC%B0%A8%20test-img/ES%20QPS.png?raw=true" alt="Elasticsearch QPS 모니터링 결과" width="600" height="300">
+    </div>
+
+    - MongoDB
+    
+    <div align="center">
+      <img src="https://raw.githubusercontent.com/dltjdska32/my-resume-img/main/munova_imgs/2%EC%B0%A8%20test-img/%EC%BF%BC%EB%A6%AC%EC%84%B1%EB%8A%A5.png?raw=true" alt="MongoDB 쿼리 성능 모니터링 결과" width="600" height="300">
+    </div>
+
+  - 개선 결과
+    - ✅ **p(95)**: 5.4s → 3.87s (**약 28.4% 단축**)
+    - ✅ **RPS**: 230 → 318 (**약 38.26% 향상**)
+    - ✅ **실패율**: 0.02% → 0%
+
+  - ES
+    - ✅ **QPS**: 134 → 179 (**약 33.6% 향상**)
+
+  - MongoDB
+    - ✅ **Read Lock 대기 시간**: (약 70% 개선)
+    - ✅ **쿼리 수행 시간**: 200ms → 50ms (**약 75% 단축**)
+    - ✅ **QPS**: 140 → 180 (**약 28.57% 향상**)
 
 ---
 <br>
@@ -305,14 +359,11 @@
   - Redis: 실시간 통계, 세션
   - Elasticsearch: 전문 검색, 필터링
 
+
+
+
+<br>
 ---
-
-
-
-
----
-
-
 
 ### 기술적 강점
 - Clean Architecture 기반 확장 가능한 시스템 설계
