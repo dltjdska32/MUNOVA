@@ -333,6 +333,10 @@
       - MongoDB
       
       <div align="center">
+        <img src="https://raw.githubusercontent.com/dltjdska32/my-resume-img/main/munova_imgs/2%EC%B0%A8%20test-img/%EB%AA%BD%EA%B3%A0%20%EB%A6%AC%EB%93%9C%EB%9D%BD%20%EB%8C%80%EA%B8%B0%EC%8B%9C%EA%B0%84%20%EA%B2%B0%EA%B3%BC.png?raw=true" alt="MongoDB Read Lock 대기 시간 결과" width="600" height="300">
+      </div>
+      <br>
+      <div align="center">
         <img src="https://raw.githubusercontent.com/dltjdska32/my-resume-img/main/munova_imgs/2%EC%B0%A8%20test-img/%EC%BF%BC%EB%A6%AC%EC%84%B1%EB%8A%A5.png?raw=true" alt="MongoDB 쿼리 성능 모니터링 결과" width="600" height="300">
       </div>
 
