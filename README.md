@@ -288,7 +288,7 @@
   - RDB 상품 관련 총 데이터 1억 3천만건
   - 테스트 시나리오 (로드 테스트)
     <div align="center">
-      <img src="https://github.com/dltjdska32/my-resume-img/blob/main/munova_imgs/2%EC%B0%A8%20test-img/2%EC%B0%A8%20%ED%85%8C%EC%8A%A4%ED%8A%B8%20%EC%84%B8%ED%8C%85.png?raw=true" alt="2차 테스트 세팅" width="600" height="200">
+      <img src="https://github.com/dltjdska32/my-resume-img/blob/main/munova_imgs/2%EC%B0%A8%20test-img/2%EC%B0%A8%20%ED%85%8C%EC%8A%A4%ED%8A%B8%20%EC%84%B8%ED%8C%85.png?raw=true" alt="2차 테스트 세팅" width="600" height="300">
     </div>
 
 - 문제 상황
