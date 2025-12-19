@@ -261,70 +261,23 @@
 
 <br>
 
-### 2. TCP 커넥션 유실 문제 발생
+
+### 2. 상품 전체 조회 2차 성능 개선 - 부하 분산
+
+- 상품 전체 조회 Sequence Diagram
+  <div align="center">
+    <img src="https://github.com/dltjdska32/my-resume-img/blob/main/munova_imgs/2%EC%B0%A8%20test-img/2%EC%B0%A8%20SD.png?raw=true" alt="상품 전체 조회 Sequence Diagram" width="600" height="360">
+  </div>
 
 - 테스트 환경
-  - 가상유저(VU): 9,000명
-  - 요청 패턴: 각 VU가 1초에 1회 요청 (이론적 처리량: 9,000건/초)
-  - 애플리케이션 서버: 1대
-
-- 문제 상황
-  - **9,000명의 VU가 1초에 1회 요청 시 이론적으로 9,000건의 요청이 처리되어야 하나, 실제로는 3,837건만 처리됨**
-  - **약 57.3%의 요청이 TCP 커넥션 단계에서 유실** (9,000 - 3,837 = 5,163건 유실)
-  - `http_req_failed: 0.00%`로 HTTP 레벨 에러는 없으나, 대부분의 요청이 TCP 커넥션 수립 단계에서 실패
-  - 처리된 요청의 응답 시간도 매우 느림 (평균 14.89초, p(95) 26.63초)
-
-- 원인 분석
-  - **Accept Queue 포화**
-    - 애플리케이션 서버의 `acceptCount` 설정값이 부족하여 커넥션 요청을 대기할 수 있는 큐 크기 부족
-    - 커널의 `somaxconn` (Socket Maximum Connection) 값이 낮아 커널 레벨에서의 대기 큐 크기 제한
-  - **SYN Queue 포화**
-    - TCP 3-way handshake 과정에서 SYN 패킷을 대기하는 커널의 SYN Queue가 포화 상태
-    - `tcp_max_syn_backlog` 파라미터로 제어되는 SYN Queue 크기 부족
-  - **커널 영역의 큐 구조**
-    - **SYN Queue**: 클라이언트의 SYN 패킷을 대기하는 큐 (3-way handshake 1단계)
-    - **Accept Queue**: 3-way handshake 완료 후 애플리케이션에서 `accept()` 호출을 대기하는 큐
-    - 두 큐 중 하나라도 포화되면 새로운 커넥션 수립 실패
-
-- 해결 방법
-  - **애플리케이션 레벨 튜닝**
-    - Tomcat의 `acceptCount` 값 증가 (기본값 100 → 1000 이상)
-    - 애플리케이션 서버가 더 많은 커넥션 요청을 대기할 수 있도록 설정
-  - **커널 레벨 튜닝**
-    - `somaxconn` 값 증가: `/proc/sys/net/core/somaxconn` (기본값 128 → 2048 이상)
-      - Accept Queue의 최대 크기를 결정하는 커널 파라미터
-    - `tcp_max_syn_backlog` 값 증가: `/proc/sys/net/ipv4/tcp_max_syn_backlog` (기본값 512 → 2048 이상)
-      - SYN Queue의 최대 크기를 결정하는 커널 파라미터
-    - `tcp_syncookies` 활성화: `/proc/sys/net/ipv4/tcp_syncookies` (1로 설정)
-      - SYN Queue 포화 시 SYN Cookie를 사용하여 SYN Flooding 공격 방어 및 큐 포화 완화
-  - **커넥션 풀 최적화**
-    - 데이터베이스 커넥션 풀 크기 조정
-    - HTTP 클라이언트 커넥션 풀 설정 최적화
-
-- 결과
-  - **개선 전**: 9,000 VU 요청 시 3,837건만 처리 (약 57.3% 커넥션 유실)
-  - **개선 후**: 커널 파라미터 및 애플리케이션 설정 최적화 후 9,000 VU 동시 요청 시에도 커넥션 유실 없이 정상 처리
-  - Accept Queue와 SYN Queue 크기 증가로 대량의 동시 커넥션 요청을 안정적으로 처리 가능
-  - `acceptCount`, `somaxconn`, `tcp_max_syn_backlog` 튜닝을 통해 TCP 커넥션 수립 단계의 병목 해소
-
-
-### 2. 상품 관련 데이터 (약 3,000만) 조회시 p(95) 30초 문제 발생 - ElasticSearch, MongoDB 도입, CQRS 적용
-
-- 문제 상황 및 문제 예측
-  - **문제 상황**
-    - 약 3,000만 건의 데이터에서 가상유저(VU) 9,000명이 1초에 1회 요청 시 p(95) 약 26초로 목표 성능(p(95) 3초)을 크게 초과
-    - TCP 커넥션 튜닝 후에도 응답 시간이 여전히 높아 애플리케이션 레벨의 병목 존재 확인
-  - **예상 문제점**
-    - **읽기/쓰기 경합**: 단일 DB(MySQL)에서 읽기와 쓰기 작업이 동시에 빈번히 발생할 경우 락 경합으로 인한 성능 저하 예상
-    - **단일 DB 부하 집중**: 상품 조회뿐만 아니라 채팅, 결제, 추천 등 다른 도메인에서도 동일한 MySQL을 바라보는 상황에서 DB 부하 집중 예상
-    - **확장성 제약**: 단일 RDB에 모든 부하가 집중되어 수평 확장이 어려운 구조
-    - **읽기 성능 병목**: 복잡한 검색 및 필터링 쿼리가 트랜잭션 데이터와 동일한 DB에서 실행되어 읽기 성능 저하 예상
-
- - 해결 방법
-  - CQRS 도입을 통한 
-
-
-
+ - MongoDB 약 2000만 문서
+ - ES 약 2000만 문서
+ - RDB 상품 관련 총 데이터 1억 3천만건
+ - 테스트 시나리오
+  <div align="center">
+    <img src="https://github.com/dltjdska32/my-resume-img/blob/main/munova_imgs/2%EC%B0%A8%20test-img/2%EC%B0%A8%20%ED%85%8C%EC%8A%A4%ED%8A%B8%20%EC%84%B8%ED%8C%85.png?raw=true" alt="2차 테스트 세팅" width="600" height="200">
+  </div>
+ 
 
 
 
