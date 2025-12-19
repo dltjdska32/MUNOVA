@@ -78,9 +78,9 @@
 
 ### 1. 핵심 기능 구현
 
-<table cellpadding="12" cellspacing="12" style="width: 100%;">
+<table width="100%" cellpadding="12" cellspacing="12" style="width: 100%; table-layout: fixed;">
 <tr>
-<td valign="top" style="padding: 14px; font-size: 12px; line-height: 1.3; width: 33.33%;">
+<td width="33.33%" valign="top" style="padding: 14px; font-size: 12px; line-height: 1.3; width: 33.33%;">
 <strong>📦 상품</strong><br>
 <hr style="margin: 8px 0;">
 <ul>
@@ -101,7 +101,7 @@
   <li>상품 등록, 수정, 삭제 (C, U, D)</li>
 </ul>
 </td>
-<td valign="top" style="padding: 14px; font-size: 12px; line-height: 1.3; width: 33.33%;">
+<td width="33.33%" valign="top" style="padding: 14px; font-size: 12px; line-height: 1.3; width: 33.33%;">
 <strong>❤️ 좋아요</strong><br>
 <hr style="margin: 8px 0;">
 <ul>
@@ -114,7 +114,7 @@
   </li>
 </ul>
 </td>
-<td valign="top" style="padding: 14px; font-size: 12px; line-height: 1.3; width: 33.33%;">
+<td width="33.33%" valign="top" style="padding: 14px; font-size: 12px; line-height: 1.3; width: 33.33%;">
 <strong>🛒 장바구니</strong><br>
 <hr style="margin: 8px 0;">
 <ul>
@@ -206,7 +206,7 @@
 
 - 문제 상황
   - 약 3,000만 건의 데이터 중 20개 상품 조회 시 WAS와 DB 서버 간 커넥션 끊김 발생
-    - LIKE "%keyword%" 검색으로 인한 풀 테이블 스캔
+    - **LIKE "%keyword%"** 검색으로 인한 풀 테이블 스캔
     - 인덱스 미적용으로 인한 비효율적인 조회
     - 검색 옵션 확인용 DISTINCT 함수 사용으로 인한 추가 정렬/그룹핑 비용
     - 페이징 처리 시 카운트 쿼리로 인한 추가 지연
