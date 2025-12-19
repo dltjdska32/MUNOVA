@@ -177,7 +177,7 @@
 
 <div style="margin-top: 20px; padding-left: 24px; font-family: 'Segoe UI', 'Malgun Gothic', sans-serif; font-size: 16px; font-weight: 700; line-height: 1.6; color: #2d3748;">
 
-**→** 각각의 기술들에 적절한 역할을 설정하여 하나의 기술에 집중될 수 있는 부하를 분산하기 위해 노력했습니다.
+**➡ 각각의 기술들에 적절한 역할을 설정하여, 하나의 기술에 부하가 집중되지 않도록 분산 아키텍처를 설계했습니다.**
 
 - **MySQL**: 최종 데이터 일관성 유지
   - 트랜잭션이 필요한 쓰기 작업의 최종 저장소
