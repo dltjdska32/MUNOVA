@@ -348,18 +348,16 @@
 
 ### 🔄 비동기 처리 & 배치
 - **이벤트 기반 아키텍처**: 
-  - Domain Event 발행으로 비즈니스 로직 결합도 감소
+  - Domain Event 발행으로 비즈니스 로직 결합도 감소 (Spring Event Publisher 활용)
   - Outbox 스케줄러로 At-Least-Once 전달 보장
 
 
 ### 🎯 데이터베이스 분리
 - **폴리글랏 퍼시스턴스**
-  - MySQL: 트랜잭션 데이터 (상품, 주문, 재고)
-  - MongoDB: 대용량 이미지 URL, 상품 설명
-  - Redis: 실시간 통계, 세션
-  - Elasticsearch: 전문 검색, 필터링
-
-
+  - MySQL: 트랜잭션 데이터 (상품)
+  - MongoDB: 상품 전체 조회 (검색 X), 상품 상세 조회
+  - Redis: 실시간 상품 통계 (좋아요, 조회수, 판매량)
+  - Elasticsearch: 상품 전체 조회 (검색 O)
 
 
 <br>
