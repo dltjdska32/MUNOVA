@@ -296,44 +296,44 @@
 
 
  - 결과
-  - 개선 전: RPS: 234 / p(95): 5.4s
-  
-  <div align="center">
-    <img src="https://raw.githubusercontent.com/dltjdska32/my-resume-img/main/munova_imgs/2%EC%B0%A8%20test-img/%EC%B4%88%EA%B8%B0%20%EA%B2%B0%EA%B3%BC.png?raw=true" alt="2차 테스트 초기 결과" width="600" height="200">
-  </div>
+    - 개선 전: RPS: 234 / p(95): 5.4s
+    
+    <div align="center">
+      <img src="https://raw.githubusercontent.com/dltjdska32/my-resume-img/main/munova_imgs/2%EC%B0%A8%20test-img/%EC%B4%88%EA%B8%B0%20%EA%B2%B0%EA%B3%BC.png?raw=true" alt="2차 테스트 초기 결과" width="600" height="200">
+    </div>
 
-  - 개선 후: RPS: 318 / p(95): 3.87s
-  
-  <div align="center">
-    <img src="https://raw.githubusercontent.com/dltjdska32/my-resume-img/main/munova_imgs/2%EC%B0%A8%20test-img/%EC%B5%9C%EC%A2%85%EA%B2%B0%EA%B3%BC.png?raw=true" alt="2차 테스트 최종 결과" width="600" height="200">
-  </div>
+    - 개선 후: RPS: 318 / p(95): 3.87s
+    
+    <div align="center">
+      <img src="https://raw.githubusercontent.com/dltjdska32/my-resume-img/main/munova_imgs/2%EC%B0%A8%20test-img/%EC%B5%9C%EC%A2%85%EA%B2%B0%EA%B3%BC.png?raw=true" alt="2차 테스트 최종 결과" width="600" height="200">
+    </div>
 
-  - 모니터링 결과
+    - 모니터링 결과
+
+      - ES
+      
+      <div align="center">
+        <img src="https://raw.githubusercontent.com/dltjdska32/my-resume-img/main/munova_imgs/2%EC%B0%A8%20test-img/ES%20QPS.png?raw=true" alt="Elasticsearch QPS 모니터링 결과" width="600" height="300">
+      </div>
+
+      - MongoDB
+      
+      <div align="center">
+        <img src="https://raw.githubusercontent.com/dltjdska32/my-resume-img/main/munova_imgs/2%EC%B0%A8%20test-img/%EC%BF%BC%EB%A6%AC%EC%84%B1%EB%8A%A5.png?raw=true" alt="MongoDB 쿼리 성능 모니터링 결과" width="600" height="300">
+      </div>
+
+    - 개선 결과
+      - ✅ **p(95)**: 5.4s → 3.87s (**약 28.4% 단축**)
+      - ✅ **RPS**: 230 → 318 (**약 38.26% 향상**)
+      - ✅ **실패율**: 0.02% → 0%
 
     - ES
-    
-    <div align="center">
-      <img src="https://raw.githubusercontent.com/dltjdska32/my-resume-img/main/munova_imgs/2%EC%B0%A8%20test-img/ES%20QPS.png?raw=true" alt="Elasticsearch QPS 모니터링 결과" width="600" height="300">
-    </div>
+      - ✅ **QPS**: 134 → 179 (**약 33.6% 향상**)
 
     - MongoDB
-    
-    <div align="center">
-      <img src="https://raw.githubusercontent.com/dltjdska32/my-resume-img/main/munova_imgs/2%EC%B0%A8%20test-img/%EC%BF%BC%EB%A6%AC%EC%84%B1%EB%8A%A5.png?raw=true" alt="MongoDB 쿼리 성능 모니터링 결과" width="600" height="300">
-    </div>
-
-  - 개선 결과
-    - ✅ **p(95)**: 5.4s → 3.87s (**약 28.4% 단축**)
-    - ✅ **RPS**: 230 → 318 (**약 38.26% 향상**)
-    - ✅ **실패율**: 0.02% → 0%
-
-  - ES
-    - ✅ **QPS**: 134 → 179 (**약 33.6% 향상**)
-
-  - MongoDB
-    - ✅ **Read Lock 대기 시간**: (약 70% 개선)
-    - ✅ **쿼리 수행 시간**: 200ms → 50ms (**약 75% 단축**)
-    - ✅ **QPS**: 140 → 180 (**약 28.57% 향상**)
+      - ✅ **Read Lock 대기 시간**: (약 70% 개선)
+      - ✅ **쿼리 수행 시간**: 200ms → 50ms (**약 75% 단축**)
+      - ✅ **QPS**: 140 → 180 (**약 28.57% 향상**)
 
 ---
 <br>
