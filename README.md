@@ -7,7 +7,7 @@
 <div style="border-left: 4px solid #808080; padding-left: 16px; margin-left: 0;">
 
 **MUNOVA**는 국내 유명 이커머스 플랫폼(무신사, 29CM 등)을 벤치마킹하여 구축한 신발 전문 온라인 쇼핑몰입니다.  
-DAU 200,000명, 피크 유저 2,000명을 목표로 설정하고, **대용량 트래픽 처리**와 **성능 최적화**에 중점을 두었습니다.
+**DAU 200,000명, 피크 유저 2,000명, p(95) 3초내외**를 목표로 설정하고, **대용량 트래픽 처리**와 **성능 최적화**에 중점을 두었습니다.
 </div>
 
 ---
@@ -78,9 +78,9 @@ DAU 200,000명, 피크 유저 2,000명을 목표로 설정하고, **대용량 �
 
 ### 1. 핵심 기능 구현
 
-<table cellpadding="12" cellspacing="12">
+<table cellpadding="12" cellspacing="12" style="width: 100%;">
 <tr>
-<td valign="top" style="padding: 14px; font-size: 12px; line-height: 1.3;">
+<td valign="top" style="padding: 14px; font-size: 12px; line-height: 1.3; width: 33.33%;">
 <strong>📦 상품</strong><br>
 <hr style="margin: 8px 0;">
 <ul>
@@ -101,7 +101,7 @@ DAU 200,000명, 피크 유저 2,000명을 목표로 설정하고, **대용량 �
   <li>상품 등록, 수정, 삭제 (C, U, D)</li>
 </ul>
 </td>
-<td valign="top" style="padding: 14px; font-size: 12px; line-height: 1.3;">
+<td valign="top" style="padding: 14px; font-size: 12px; line-height: 1.3; width: 33.33%;">
 <strong>❤️ 좋아요</strong><br>
 <hr style="margin: 8px 0;">
 <ul>
@@ -114,7 +114,7 @@ DAU 200,000명, 피크 유저 2,000명을 목표로 설정하고, **대용량 �
   </li>
 </ul>
 </td>
-<td valign="top" style="padding: 14px; font-size: 12px; line-height: 1.3;">
+<td valign="top" style="padding: 14px; font-size: 12px; line-height: 1.3; width: 33.33%;">
 <strong>🛒 장바구니</strong><br>
 <hr style="margin: 8px 0;">
 <ul>
@@ -186,7 +186,7 @@ DAU 200,000명, 피크 유저 2,000명을 목표로 설정하고, **대용량 �
 
 
 
-## 🎨 기술적 도전과 해결
+## 🎨 기술적 도전과 문제 해결
 
 - 최소한의 인프라(ES 노드 1대, MongoDB 1대, MySQL 1대, Redis 1대, 애플리케이션 서버 1대)로 실제 서비스 수준 트래픽을 처리하기 위해 성능 병목을 예측·검증하고 개선한 과정 정리
 
@@ -206,7 +206,7 @@ DAU 200,000명, 피크 유저 2,000명을 목표로 설정하고, **대용량 �
 
 - 문제 상황
   - 약 3,000만 건의 데이터 중 20개 상품 조회 시 WAS와 DB 서버 간 커넥션 끊김 발생
-    - LIKE 검색으로 인한 풀 테이블 스캔
+    - LIKE "%keyword%" 검색으로 인한 풀 테이블 스캔
     - 인덱스 미적용으로 인한 비효율적인 조회
     - 검색 옵션 확인용 DISTINCT 함수 사용으로 인한 추가 정렬/그룹핑 비용
     - 페이징 처리 시 카운트 쿼리로 인한 추가 지연
@@ -220,18 +220,18 @@ DAU 200,000명, 피크 유저 2,000명을 목표로 설정하고, **대용량 �
   - DISTINCT 제거를 위한 서브쿼리 최적화
     - 검색 옵션 확인용 서브쿼리로 DISTINCT 사용 제거
   - 커서 기반 페이징 도입
-    - 기존 COUNT + LIMIT-OFFSET 방식 제거
-    - 커서 방식으로 페이지가 뒤로 갈수록 느려지는 문제 해소 및 응답 시간 단축
+    - 기존 COUNT + LIMIT-OFFSET 방식에서 커서 기반 페이징으로 전환하여 COUNT 쿼리 비용 제거
+    - LIMIT-OFFSET 방식의 단점인 페이지가 뒤로 갈수록 느려지는 문제 해소 및 일관된 응답 시간 보장
 
 - 결과
 
-  - 개선 전: P6Spy 기준, **상품 전체 조회 1회 요청 (쿼리 실행 + 네트워크 왕복 시간 포함)**
+  - 개선 전: P6Spy 기준, **상품 전체 조회 1회 요청 (쿼리 실행 + 네트워크 왕복 시간 포함)** -> 100초
 
     <div align="center">
       <img src="https://github.com/dltjdska32/my-resume-img/blob/main/munova_imgs/test_img/%ED%8E%98%EC%9D%B4%EC%A7%95,%20%EC%A1%B0%ED%9A%8C%20%EC%BF%BC%EB%A6%AC%20%EC%8B%9C%EA%B0%84.png?raw=true" alt="페이징 및 조회 쿼리 시간 - 개선 전" width="700">
     </div>
 
-  - 개선 후: **쿼리 튜닝 및 인덱스/페이징 최적화 적용 후 순수 쿼리 실행 시간**
+  - 개선 후: **쿼리 튜닝 및 인덱스/페이징 최적화 적용 후 순수 쿼리 실행 시간** ->  0.03초
 
     <div align="center">
       <img src="https://github.com/dltjdska32/my-resume-img/blob/main/munova_imgs/test_img/%EA%B2%B0%EA%B3%BC%200.03%EC%B4%88%20%EA%B0%9C%EC%84%A0.png?raw=true" alt="결과 0.03초로 개선" width="700">
@@ -242,7 +242,16 @@ DAU 200,000명, 피크 유저 2,000명을 목표로 설정하고, **대용량 �
 
 <br>
 
-###2. 상품 관련 데이터 (약 3,000만) 조회시 p(95) 30초 문제 발생 - ElasticSearch, MongoDB 도입
+### 2. 
+
+
+### 2. 상품 관련 데이터 (약 3,000만) 조회시 p(95) 30초 문제 발생 - ElasticSearch, MongoDB 도입, CQRS 적용
+
+
+-문제상황 및 문제 예측
+ - 기존 3,000만 데이터에서 가상유저(VU) 9,000명이 1초 요청
+ - 단일 DB(Mysql)에서 쓰기, 읽기 작업이 빈번히 일어날 경우 락으로 인하여 성능 하락의 원인이 될 것이라 예측
+
 
 
 
