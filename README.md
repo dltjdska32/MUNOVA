@@ -278,7 +278,6 @@
 
 ### 2️⃣ 상품 전체 조회 2차 성능 개선 - 스레드 튜닝 및 부하 분산
 
-- 상품 전체 조회 Sequence Diagram
   <div align="center">
     <img src="https://github.com/dltjdska32/my-resume-img/blob/main/munova_imgs/2%EC%B0%A8%20test-img/2%EC%B0%A8%20SD.png?raw=true" alt="상품 전체 조회 Sequence Diagram" width="600" height="360">
   </div>
@@ -310,11 +309,40 @@
 
 
  - 결과
+    - 개선 과정 비교
+
+      - ES
+      
+      <div align="center">
+        <img src="https://raw.githubusercontent.com/dltjdska32/my-resume-img/main/munova_imgs/2%EC%B0%A8%20test-img/ES%20QPS.png?raw=true" alt="Elasticsearch QPS 모니터링 결과" width="600" height="300">
+      </div>
+      
+        - ✅ **QPS**: 134 → 179 (**약 33.6% 향상**)
+
+      <br>
+
+      - MongoDB
+      
+      <div align="center">
+        <img src="https://raw.githubusercontent.com/dltjdska32/my-resume-img/main/munova_imgs/2%EC%B0%A8%20test-img/%EB%AA%BD%EA%B3%A0%20%EB%A6%AC%EB%93%9C%EB%9D%BD%20%EB%8C%80%EA%B8%B0%EC%8B%9C%EA%B0%84%20%EA%B2%B0%EA%B3%BC.png?raw=true" alt="MongoDB Read Lock 대기 시간 결과" width="600" height="300">
+      </div>
+      
+      <div align="center">
+        <img src="https://raw.githubusercontent.com/dltjdska32/my-resume-img/main/munova_imgs/2%EC%B0%A8%20test-img/%EC%BF%BC%EB%A6%AC%EC%84%B1%EB%8A%A5.png?raw=true" alt="MongoDB 쿼리 성능 모니터링 결과" width="600" height="300">
+      </div>
+      
+        - ✅ **Read Lock 대기 시간**: (**약 70% 개선**)
+        - ✅ **쿼리 수행 시간**: 185ms → 50ms (**약 73% 단축**)
+        - ✅ **QPS**: 140 → 180 (**약 28.57% 향상**)
+
+    <br>
+
     - 개선 전: RPS: 234 / p(95): 5.4s
     
     <div align="center">
       <img src="https://raw.githubusercontent.com/dltjdska32/my-resume-img/main/munova_imgs/2%EC%B0%A8%20test-img/%EC%B4%88%EA%B8%B0%20%EA%B2%B0%EA%B3%BC.png?raw=true" alt="2차 테스트 초기 결과" width="600" height="200">
     </div>
+    <br>
 
     - 개선 후: RPS: 318 / p(95): 3.87s
     
@@ -322,42 +350,52 @@
       <img src="https://raw.githubusercontent.com/dltjdska32/my-resume-img/main/munova_imgs/2%EC%B0%A8%20test-img/%EC%B5%9C%EC%A2%85%EA%B2%B0%EA%B3%BC.png?raw=true" alt="2차 테스트 최종 결과" width="600" height="200">
     </div>
 
-    - 모니터링 결과
-
-      - ES
-      
-      <div align="center">
-        <img src="https://raw.githubusercontent.com/dltjdska32/my-resume-img/main/munova_imgs/2%EC%B0%A8%20test-img/ES%20QPS.png?raw=true" alt="Elasticsearch QPS 모니터링 결과" width="600" height="300">
-      </div>
-
-      - MongoDB
-      
-      <div align="center">
-        <img src="https://raw.githubusercontent.com/dltjdska32/my-resume-img/main/munova_imgs/2%EC%B0%A8%20test-img/%EB%AA%BD%EA%B3%A0%20%EB%A6%AC%EB%93%9C%EB%9D%BD%20%EB%8C%80%EA%B8%B0%EC%8B%9C%EA%B0%84%20%EA%B2%B0%EA%B3%BC.png?raw=true" alt="MongoDB Read Lock 대기 시간 결과" width="600" height="300">
-      </div>
-      <br>
-      <div align="center">
-        <img src="https://raw.githubusercontent.com/dltjdska32/my-resume-img/main/munova_imgs/2%EC%B0%A8%20test-img/%EC%BF%BC%EB%A6%AC%EC%84%B1%EB%8A%A5.png?raw=true" alt="MongoDB 쿼리 성능 모니터링 결과" width="600" height="300">
-      </div>
-
     - 개선 결과
       - ✅ **p(95)**: 5.4s → 3.87s (**약 28.4% 단축**)
       - ✅ **RPS**: 230 → 318 (**약 38.26% 향상**)
       - ✅ **실패율**: 0.02% → 0%
 
-    - ES
-      - ✅ **QPS**: 134 → 179 (**약 33.6% 향상**)
+    <br>
 
-    - MongoDB
-      - ✅ **Read Lock 대기 시간**: (**약 70% 개선**)
-      - ✅ **쿼리 수행 시간**: 185ms → 50ms (**약 73% 단축**)
-      - ✅ **QPS**: 140 → 180 (**약 28.57% 향상**)
+
 
 
 
 
 ### 3️⃣ 상품 상세 조회 성능 개선
 
+- 문제 상황
+  - 상품 상세 조회 시 MySQL(RDB)를 통해 조회
+    - 하나의 상품 상세 조회 시 다수의 테이블(브랜드, 이미지, 카테고리, 디테일 등 6개)을 JOIN하여 성능 저하 발생
+    - 상품 조회 시 조회수 UPDATE 연산이 발생하여 쓰기와 읽기가 동시에 일어나는 상황에서 락으로 인한 읽기 성능 저하
+    - MySQL 버퍼풀에 페이지 단위로 올라가는 데이터 양이 비효율적으로 증가
+
+- 해결 방법
+  - **각 기술의 특성에 맞는 역할 분리**: 읽기/쓰기 분리 및 데이터 저장소 최적화
+    - **MongoDB에 상품 상세 조회 역할 부여**
+      - JSON 형식의 문서 구조를 가진 MongoDB에 임베디드 필드를 추가하여 불필요한 JOIN 제거 및 읽기 성능 향상
+      - 필요한 문서 페이지만 메모리에 로드하여 JOIN으로 인한 불필요한 메모리 사용량 감소
+    - **Redis에 조회수 업데이트 및 조회 역할 부여**
+      - Redis Lua Script를 통해 원자적으로 조회수 카운트 처리
+      - Redis에 쓰기 작업을 분리하여 MongoDB의 쓰기 락으로 인한 불필요한 락 경합 방지 
+
+- 결과
+  - 개선 전: MySQL 상세 조회 - p(95): 4.05s / RPS: 983
+    
+    <div align="center">
+      <img src="https://raw.githubusercontent.com/dltjdska32/my-resume-img/main/munova_imgs/2%EC%B0%A8%20test-img/%EC%83%81%ED%92%88%EC%83%81%EC%84%B8%20RDB.png?raw=true" alt="MySQL 상세 조회 - 개선 전" width="600" height="200">
+    </div>
+    <br>
+
+  - 개선 후: MongoDB 상세 조회 - p(95): 1.05s / RPS: 1341
+    
+    <div align="center">
+      <img src="https://raw.githubusercontent.com/dltjdska32/my-resume-img/main/munova_imgs/2%EC%B0%A8%20test-img/%EC%83%81%ED%92%88%EC%83%81%EC%84%B8%20%EB%AA%BD%EA%B3%A0.png?raw=true" alt="MongoDB 상세 조회 - 개선 후" width="600" height="200">
+    </div>
+
+  - 개선 결과
+    - ✅ **p(95)**: 4.05s → 1.05s (**약 74.07% 단축**)
+    - ✅ **RPS**: 983 → 1341 (**약 36.42% 향상**)
 ---
 <br>
 
