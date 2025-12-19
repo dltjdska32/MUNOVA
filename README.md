@@ -100,8 +100,8 @@
 <ul>
   <li><strong>상품 전체 조회 (R)</strong>
     <ul>
-      <li> <strong>키워드 기반 검색:</strong> 상품명, 브랜드명, 카테고리명, 옵션명을 통한 검색</li>
-      <li><strong>필터 기능:</strong> 카테고리, 옵션 조건을 통한 검색 결과 필터링</li>
+      <li> <strong>키워드 기반 검색:</strong> 상품명, 브랜드명, 카테고리명, <br>옵션명을 통한 검색</li>
+      <li><strong>필터 기능:</strong> 카테고리, 옵션 조건을 통한 검색 결과<br> 필터링</li>
       <li><strong>정렬 기능:</strong> 최신순, 조회수순, 판매량순, 좋아요순 정렬</li>
     </ul>
   </li>
@@ -123,7 +123,7 @@
   <li>좋아요 등록, 삭제 (C, D)</li>
   <li><strong>상품 좋아요수 업데이트 (U)</strong>
     <ul>
-      <li> <strong>동시성 제어:</strong> Redis Lua Script를 통한 안전한 좋아요 수 증가</li>
+      <li> <strong>동시성 제어:</strong> Redis Lua Script를 통한 안전한 <br>좋아요 수 증가</li>
     </ul>
   </li>
 </ul>
@@ -133,7 +133,7 @@
 <hr style="margin: 8px 0;">
 <ul>
   <li>장바구니 리스트 조회 (R)</li>
-  <li>장바구니 등록, 수정, 삭제 (C, U, D)</li>
+  <li>장바구니 등록, 수정,<br> 삭제 (C, U, D)</li>
 </ul>
 </td>
 </tr>
