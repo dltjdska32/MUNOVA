@@ -21,7 +21,7 @@
 - [🎨 기술적 도전 및 성능 개선](#-기술적-도전-및-성능-개선)
 - [📊 성능 최적화 전략](#-성능-최적화-전략)
 - [💪 기술적 강점](#-기술적-강점)
-
+- [📚 Wiki - README에 담지 못한 사고 과정, 개선과정 및 트러블 슈팅 과정](https://github.com/dltjdska32/MUNOVA/wiki)
 ---
 <BR>
 
@@ -443,3 +443,8 @@
 - Redis 기반 고성능 동시성 제어 (Lua Script)
 - DDD/CQRS 패턴 실전 적용
 
+---
+<br>
+
+### 📚 Wiki - README에 담지 못한 사고 과정, 개선과정 및 트러블 슈팅 과정
+- [Wiki 보기](https://github.com/dltjdska32/MUNOVA/wiki)
