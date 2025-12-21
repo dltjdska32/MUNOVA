@@ -5,7 +5,6 @@ import com.space.munova.product.infra.redis.command.ProductStatsRedisDataCommand
 import lombok.RequiredArgsConstructor;
 import org.springframework.batch.item.ItemReader;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
