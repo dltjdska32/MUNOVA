@@ -163,14 +163,14 @@
 
 <table cellpadding="24" cellspacing="16" width="100%">
 <tr>
-<td valign="top" width="70%" style="padding: 24px 32px;">
+<td valign="top" width="50%" style="padding: 24px 32px;">
 <strong>🏛️ DDD 아키텍처</strong><br>
 <hr style="margin: 8px 0;">
 • 비즈니스 본질에 집중하는 설계<br>
 • 에그리게이트 패턴<br>
 &nbsp;&nbsp;&nbsp; (상품, 장바구니, 좋아요)
 </td>
-<td valign="top" width="70%" style="padding: 24px 32px;">
+<td valign="top" width=50%" style="padding: 24px 32px;">
 <strong>🔌 Hexagonal 아키텍처</strong><br>
 <hr style="margin: 8px 0;">
 • Port & Adapter 패턴<br>
@@ -179,14 +179,14 @@
 </td>
 </tr>
 <tr>
-<td valign="top" width="70%" style="padding: 24px 32px;">
+<td valign="top" width="50%" style="padding: 24px 32px;">
 <strong>📖 CQRS 패턴</strong><br>
 <hr style="margin: 8px 0;">
 • 읽기와 쓰기 분리<br>
 • 읽기 성능 향상<br>
 • 복잡한 조회 로직 단순화
 </td>
-<td valign="top" width="70%" style="padding: 24px 32px;">
+<td valign="top" width="50%" style="padding: 24px 32px;">
 <strong>📦 Outbox 패턴</strong><br>
 <hr style="margin: 8px 0;">
 • 분산 트랜잭션 데이터 정합성 보장<br>
