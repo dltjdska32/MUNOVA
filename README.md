@@ -189,7 +189,8 @@
 <td valign="top" width="50%" style="padding: 24px 32px;">
 <strong>📦 Outbox 패턴</strong><br>
 <hr style="margin: 8px 0;">
-• 분산 트랜잭션 <br> 데이터 정합성 보장<br>
+• 분산 트랜잭션
+   <br>   데이터 정합성 보장<br>
 • 재시도 로직 보장<br>
 • 이벤트 기반 비동기 처리
 </td>
