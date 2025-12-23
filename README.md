@@ -161,7 +161,7 @@
 
 ### 2. 적용 아키텍처 및 패턴
 
-<table cellpadding="12" cellspacing="12" style="width: 100%; max-width: 1200px;">
+<table cellpadding="12" cellspacing="12" style="width: 100%; max-width: 2000px;">
 <tr>
 <td valign="top" style="padding: 16px; width: 50%;">
 <strong>🏛️ DDD 아키텍처</strong><br>
