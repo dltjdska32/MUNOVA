@@ -203,7 +203,7 @@
 
 <div align="center">
 
-<img src="https://github.com/dltjdska32/my-resume-img/blob/main/munova_imgs/2%EC%B0%A8%20test-img/%EA%B8%B0%EC%88%A0%EC%8A%A4%ED%83%9D.png?raw=true" alt="상품도메인 기술스택" width="600">
+<img src="https://github.com/dltjdska32/my-resume-img/blob/main/munova_imgs/architecture/%EA%B8%B0%EC%88%A0%EC%8A%A4%ED%83%9D.png?raw=true" alt="상품도메인 기술스택" width="600">
 
 </div>
 
