@@ -25,7 +25,7 @@ public class MongoQueryAdapter implements ProductListPort, ProductDetailsPort {
     @Override
     public ProductDetailResponseDto findProductDetails(Long productId) {
         ProductMongoDocument doc = productMongoQueryRepo
-                .findById(productId)
+                .findDetailProjectedById(productId)
                 .orElseThrow(() -> ProductQueryException.badRequestException("상품 정보를 확인할 수 없습니다."));
 
         return ProductDetailResponseDto.from(doc);
