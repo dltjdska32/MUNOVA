@@ -110,7 +110,7 @@
 
 ### 1. 핵심 기능 구현
 
-<table width="100%" cellpadding="12" cellspacing="12" style="width: 200%; table-layout: fixed;">
+<table width="100%" cellpadding="12" cellspacing="12" style="width: 100%; max-width: 1200px; table-layout: fixed;">
 <tr>
 <td width="33.33%" valign="top" style="padding: 14px; font-size: 12px; line-height: 1.3; width: 33.33%;">
 <strong>📦 상품</strong><br>
