@@ -161,41 +161,36 @@
 
 ### 2. 적용 아키텍처 및 패턴
 
-<table cellpadding="24" cellspacing="16" width="100%">
-<tr>
-<td valign="top" width="50%" style="padding: 24px 32px;">
+<div style="display: flex; flex-wrap: wrap; gap: 20px;">
+<div style="flex: 1; min-width: 300px; padding: 20px; border: 1px solid #ddd; border-radius: 8px;">
 <strong>🏛️ DDD 아키텍처</strong><br>
-<hr style="margin: 8px 0;">
+<hr>
 • 비즈니스 본질에 집중하는 설계<br>
 • 에그리게이트 패턴<br>
 &nbsp;&nbsp;&nbsp; (상품, 장바구니, 좋아요)
-</td>
-<td valign="top" width="50%" style="padding: 24px 32px;">
+</div>
+<div style="flex: 1; min-width: 300px; padding: 20px; border: 1px solid #ddd; border-radius: 8px;">
 <strong>🔌 Hexagonal 아키텍처</strong><br>
-<hr style="margin: 8px 0;">
+<hr>
 • Port & Adapter 패턴<br>
 • 외부 기술적 요소에 의존적이지<br>
 &nbsp;&nbsp;&nbsp; 않은 핵심 로직 구현
-</td>
-</tr>
-<tr>
-<td valign="top" width="50%" style="padding: 24px 32px;">
+</div>
+<div style="flex: 1; min-width: 300px; padding: 20px; border: 1px solid #ddd; border-radius: 8px;">
 <strong>📖 CQRS 패턴</strong><br>
-<hr style="margin: 8px 0;">
+<hr>
 • 읽기와 쓰기 분리<br>
 • 읽기 성능 향상<br>
 • 복잡한 조회 로직 단순화
-</td>
-<td valign="top" width="50%" style="padding: 24px 32px;">
+</div>
+<div style="flex: 1; min-width: 300px; padding: 20px; border: 1px solid #ddd; border-radius: 8px;">
 <strong>📦 Outbox 패턴</strong><br>
-<hr style="margin: 8px 0;">
+<hr>
 • 분산 트랜잭션 데이터 정합성 보장<br>
 • 재시도 로직 보장<br>
 • 이벤트 기반 비동기 처리
-</td>
-</tr>
-</table>
-
+</div>
+</div>
 <br>
 
 ### 3. 사용 기술 스택
